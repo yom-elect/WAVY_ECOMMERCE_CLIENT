@@ -218,3 +218,36 @@ export const SuccessfulPurchase = (data) => {
     }
   };
 };
+
+export const updateProfileInfo = (data) => {
+  return async (dispatch) => {
+    const request = await axios.post(`${USER_SERVER}/update_profile`, data, {
+      withCredentials: true,
+    });
+    const resData = await request.data;
+    console.log(resData);
+    if (resData) {
+      dispatch({
+        type: actionTypes.UPDATE_USER_DATA,
+        payload: resData,
+      });
+      return {
+        type: actionTypes.UPDATE_USER_DATA,
+        payload: resData,
+      };
+    }
+  };
+};
+
+export const clearUpdateProfile = () => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.CLEAR_USER_DATA,
+      payload: "",
+    });
+    return {
+      type: actionTypes.CLEAR_USER_DATA,
+      payload: "",
+    };
+  };
+};

@@ -10,7 +10,7 @@ import Register from "./components/Authorization/register";
 import Shop from "./components/Shop";
 import AddProduct from "./components/UserDashboard/Admin/addProduct";
 import ManageCategories from "./components/UserDashboard/Admin/manageCategories";
-
+import ManageSite from "./components/UserDashboard/Admin/manageSite";
 import UserDashboard from "./components/UserDashboard";
 import UpdateProfile from "./components/UserDashboard/updateProfile";
 import UserCart from "./components/UserDashboard/cart";
@@ -29,6 +29,11 @@ const Routes = () => {
           path="/admin/add_product"
           exact
           component={Auth(AddProduct, true)}
+        />
+        <Route
+          path="/admin/site_info"
+          exact
+          component={Auth(ManageSite, true)}
         />
         <Route
           path="/user/dashboard"

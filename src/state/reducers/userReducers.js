@@ -75,6 +75,16 @@ const userReducer = (state = initialState, action) => {
         },
         cartDetail: action.payload.cartDetail,
       };
+    case actionTypes.UPDATE_USER_DATA:
+      return {
+        ...state,
+        updateUser: action.payload,
+      };
+    case actionTypes.CLEAR_USER_DATA:
+      return {
+        ...state,
+        updateUser: action.payload,
+      };
     default:
       return state;
   }
