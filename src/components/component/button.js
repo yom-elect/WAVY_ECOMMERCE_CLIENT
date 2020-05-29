@@ -26,6 +26,14 @@ const MyButton = ({ type, linkTo, title, addStyles, altClass, runAction }) => {
           </div>
         );
         break;
+      case "addToCartLink":
+        template = (
+          <div className="add_to_cart_link" onClick={() => runAction()}>
+            <FontAwesomeIcon icon={faShoppingBag} />
+            Add to cart
+          </div>
+        );
+        break;
       default:
         template = "";
     }

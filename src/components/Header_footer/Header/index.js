@@ -64,7 +64,7 @@ const Header = (props) => {
     const user = userInfo.userData;
     return (
       <div className="cart_link" key={i}>
-        <span>{user.cart ? user.cart.length : 0}</span>
+        <span>{user.userData ? user.userData.cart.length : 0}</span>
         <Link to={item.linkTo}>{item.name}</Link>
       </div>
     );

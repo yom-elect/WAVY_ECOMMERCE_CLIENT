@@ -7,6 +7,8 @@ const initialState = {
   woods: [],
   toShop: [],
   toShopSize: null,
+  adminProduct: {},
+  prodDetail: {},
 };
 
 const productReducer = (state = initialState, action) => {
@@ -22,6 +24,18 @@ const productReducer = (state = initialState, action) => {
         ...state,
         brands: action.payload,
       };
+    case actionTypes.ADD_PRODUCT_BRAND:
+      return {
+        ...state,
+        addBrand: action.payload.success,
+        brands: action.payload.brands,
+      };
+    case actionTypes.ADD_PRODUCT_WOOD:
+      return {
+        ...state,
+        addWood: action.payload.success,
+        woods: action.payload.woods,
+      };
     case actionTypes.GET_PRODUCT_WOODS:
       return {
         ...state,
@@ -32,6 +46,21 @@ const productReducer = (state = initialState, action) => {
         ...state,
         toShop: action.payload.articles,
         toShopSize: action.payload.size,
+      };
+    case actionTypes.ADD_PRODUCT:
+      return {
+        ...state,
+        adminProduct: action.payload,
+      };
+    case actionTypes.GET_PRODUCT_DETAIL:
+      return {
+        ...state,
+        prodDetail: action.payload,
+      };
+    case actionTypes.CLEAR_PRODUCT_DETAIL:
+      return {
+        ...state,
+        prodDetail: action.payload,
       };
     default:
       return state;

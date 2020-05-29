@@ -8,19 +8,44 @@ import Home from "./components/Home";
 import Authorization from "./components/Authorization";
 import Register from "./components/Authorization/register";
 import Shop from "./components/Shop";
+import AddProduct from "./components/UserDashboard/Admin/addProduct";
+import ManageCategories from "./components/UserDashboard/Admin/manageCategories";
 
 import UserDashboard from "./components/UserDashboard";
+import UpdateProfile from "./components/UserDashboard/updateProfile";
+import UserCart from "./components/UserDashboard/cart";
+import ProductDetail from "./components/component/Product";
 
 const Routes = () => {
   return (
     <Layout>
       <Switch>
         <Route
+          path="/admin/manage_categories"
+          exact
+          component={Auth(ManageCategories, true)}
+        />
+        <Route
+          path="/admin/add_product"
+          exact
+          component={Auth(AddProduct, true)}
+        />
+        <Route
           path="/user/dashboard"
           exact
           component={Auth(UserDashboard, true)}
         />
-
+        <Route
+          path="/user/profile"
+          exact
+          component={Auth(UpdateProfile, true)}
+        />
+        <Route path="/user/cart" exact component={Auth(UserCart, true)} />
+        <Route
+          path="/product_detail/:id"
+          exact
+          component={Auth(ProductDetail, null)}
+        />
         <Route path="/register" exact component={Auth(Register, false)} />
         <Route
           path="/authorization"

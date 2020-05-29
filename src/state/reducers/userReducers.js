@@ -34,6 +34,47 @@ const userReducer = (state = initialState, action) => {
         ...state,
         logoutInfo: action.payload,
       };
+    case actionTypes.ADD_TO_CART_USER:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          userData: {
+            ...state.userData.userData,
+            cart: action.payload,
+          },
+        },
+      };
+    case actionTypes.GET_CART_ITEMS:
+      return {
+        ...state,
+        cartDetail: action.payload,
+      };
+    case actionTypes.REMOVE_CART_ITEM:
+      return {
+        ...state,
+        cartDetail: action.payload.cartDetail,
+        userData: {
+          ...state.userData,
+          userData: {
+            ...state.userData.userData,
+            cart: action.payload.cart,
+          },
+        },
+      };
+    case actionTypes.SUCCESSFUL_PURCHASE:
+      return {
+        ...state,
+        successBuy: action.payload.success,
+        userData: {
+          ...state.userData,
+          userData: {
+            ...state.userData.userData,
+            cart: action.payload.cart,
+          },
+        },
+        cartDetail: action.payload.cartDetail,
+      };
     default:
       return state;
   }

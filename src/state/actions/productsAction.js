@@ -35,6 +35,47 @@ export const getBrands = () => {
     };
   };
 };
+
+export const addBrand = (brand, existingBrands) => {
+  return async (dispatch) => {
+    const response = await axios.post(`${PRODUCT_SERVER}/brand`, brand, {
+      withCredentials: true,
+    });
+    let brands = [...existingBrands, response.data.brand];
+    const resData = async () => {
+      return {
+        success: await response.data.success,
+        brands,
+      };
+    };
+    dispatch({ type: actionTypes.ADD_PRODUCT_BRAND, payload: await resData() });
+    return {
+      type: actionTypes.ADD_PRODUCT_BRAND,
+      payload: await resData(),
+    };
+  };
+};
+
+export const addWood = (wood, existingWoods) => {
+  return async (dispatch) => {
+    const response = await axios.post(`${PRODUCT_SERVER}/wood`, wood, {
+      withCredentials: true,
+    });
+    let woods = [...existingWoods, response.data.wood];
+    const resData = async () => {
+      return {
+        success: await response.data.success,
+        woods,
+      };
+    };
+    dispatch({ type: actionTypes.ADD_PRODUCT_WOOD, payload: await resData() });
+    return {
+      type: actionTypes.ADD_PRODUCT_WOOD,
+      payload: await resData(),
+    };
+  };
+};
+
 export const getWoods = () => {
   return async (dispatch) => {
     const response = await axios.get(`${PRODUCT_SERVER}/woods`);
@@ -73,5 +114,50 @@ export const getShopProduct = (skip, limit, filters, previousState = []) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+export const addProduct = (dataToSubmit) => {
+  return async (dispatch) => {
+    const request = await axios.post(
+      `${PRODUCT_SERVER}/article`,
+      dataToSubmit,
+      {
+        withCredentials: true,
+      }
+    );
+    const resData = await request.data;
+    dispatch({ type: actionTypes.ADD_PRODUCT, payload: resData });
+    return { type: actionTypes.ADD_PRODUCT, payload: resData };
+  };
+};
+
+export const getProductDetail = (id) => {
+  return async (dispatch) => {
+    const request = await axios.get(
+      `${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`
+    );
+    const resData = await request.data[0];
+    dispatch({
+      type: actionTypes.GET_PRODUCT_DETAIL,
+      payload: resData,
+    });
+    return {
+      type: actionTypes.GET_PRODUCT_DETAIL,
+      payload: resData,
+    };
+  };
+};
+
+export const clearProductDetail = () => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.CLEAR_PRODUCT_DETAIL,
+      payload: "",
+    });
+    return {
+      type: actionTypes.CLEAR_PRODUCT_DETAIL,
+      payload: "",
+    };
   };
 };

@@ -15,6 +15,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const store = createStore(
   Reducers,
+  //applyMiddleware(ReduxThunk, promiseMiddleware),
   composeEnhancers(applyMiddleware(ReduxThunk, promiseMiddleware))
 );
 

@@ -1,12 +1,18 @@
 import React from "react";
 import MyButton from "../button";
 
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../state/actions/userAction";
+
 const Card = ({ card, grid }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const renderCardImage = (images) => {
     if (images.length > 0) {
       return images[0].url;
     } else {
-      return "./images/image_not_availble.png";
+      return "./images/image_not_available.png";
     }
   };
 
@@ -44,7 +50,9 @@ const Card = ({ card, grid }) => {
             <MyButton
               type="bag_link"
               runAction={() => {
-                console.log("added to cart");
+                user.userData.isAuth
+                  ? dispatch(addToCart(card._id))
+                  : console.log("you need to log in");
               }}
             />
           </div>

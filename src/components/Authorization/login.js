@@ -7,7 +7,7 @@ import {
   generateData,
   isFormValid,
 } from "../component/Form/formActions";
-import { loginUser, asyncLocalStorage } from "../../state/actions/userAction";
+import { loginUser } from "../../state/actions/userAction";
 
 const Login = (props) => {
   //const response = useSelector((state) => state.user.loginSuccess);
@@ -58,13 +58,13 @@ const Login = (props) => {
     let dataToSubmit = generateData(formData, "login");
     let formIsValid = isFormValid(formData, "login");
     if (formIsValid) {
-      dispatch(loginUser(dataToSubmit));
-      const response = await asyncLocalStorage.getItem("login");
-      if (response) {
-        props.history.push("/user/dashboard");
-      }
-    } else {
-      setFormError(true);
+      dispatch(loginUser(dataToSubmit)).then((resp) => {
+        if (resp.payload.loginSuccess) {
+          props.history.push("/user/dashboard");
+        } else {
+          setFormError(true);
+        }
+      });
     }
   };
 
