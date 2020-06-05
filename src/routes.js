@@ -15,6 +15,7 @@ import UserDashboard from "./components/UserDashboard";
 import UpdateProfile from "./components/UserDashboard/updateProfile";
 import UserCart from "./components/UserDashboard/cart";
 import ProductDetail from "./components/component/Product";
+import PageNotFound from "./components/component/pageNotFound";
 
 const Routes = () => {
   return (
@@ -59,6 +60,7 @@ const Routes = () => {
         />
         <Route path="/shop" exact component={Auth(Shop, null)} />
         <Route path="/" exact component={Auth(Home, null)} />
+        <Route component={Auth(PageNotFound)} />
       </Switch>
     </Layout>
   );
