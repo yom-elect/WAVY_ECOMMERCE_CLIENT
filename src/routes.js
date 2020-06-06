@@ -62,6 +62,7 @@ const Routes = () => {
         <Route path="/" exact component={Auth(Home, null)} />
         <Route component={Auth(PageNotFound)} />
       </Switch>
+      3
     </Layout>
   );
 };
