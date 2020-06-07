@@ -45,6 +45,13 @@ export const loginUser = (dataToSubmit) => {
           type: actionTypes.AUTH_SUCCESS,
           payload: request,
         };
+      } else {
+        dispatch(authSuccess(request));
+        asyncLocalStorage.setItem("login", request.loginSuccess);
+        return {
+          type: actionTypes.AUTH_SUCCESS,
+          payload: request,
+        };
       }
     } catch (err) {
       dispatch(authFail(err));

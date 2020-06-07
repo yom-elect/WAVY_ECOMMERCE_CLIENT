@@ -8,14 +8,18 @@ import Home from "./components/Home";
 import Authorization from "./components/Authorization";
 import Register from "./components/Authorization/register";
 import Shop from "./components/Shop";
+import ProductDetail from "./components/component/Product";
+import PageNotFound from "./components/component/pageNotFound";
+import ResetUser from "./components/ResetUser";
+import ResetPass from "./components/ResetUser/resetPass";
+
 import AddProduct from "./components/UserDashboard/Admin/addProduct";
 import ManageCategories from "./components/UserDashboard/Admin/manageCategories";
 import ManageSite from "./components/UserDashboard/Admin/manageSite";
+
 import UserDashboard from "./components/UserDashboard";
 import UpdateProfile from "./components/UserDashboard/updateProfile";
 import UserCart from "./components/UserDashboard/cart";
-import ProductDetail from "./components/component/Product";
-import PageNotFound from "./components/component/pageNotFound";
 
 const Routes = () => {
   return (
@@ -36,6 +40,7 @@ const Routes = () => {
           exact
           component={Auth(ManageSite, true)}
         />
+
         <Route
           path="/user/dashboard"
           exact
@@ -47,6 +52,13 @@ const Routes = () => {
           component={Auth(UpdateProfile, true)}
         />
         <Route path="/user/cart" exact component={Auth(UserCart, true)} />
+
+        <Route
+          path="/reset_password/:token"
+          exact
+          component={Auth(ResetPass, false)}
+        />
+        <Route path="/reset_user" exact component={Auth(ResetUser, false)} />
         <Route
           path="/product_detail/:id"
           exact

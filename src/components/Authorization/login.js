@@ -59,6 +59,7 @@ const Login = (props) => {
     let formIsValid = isFormValid(formData, "login");
     if (formIsValid) {
       dispatch(loginUser(dataToSubmit)).then((resp) => {
+        console.log(resp.payload);
         if (resp.payload.loginSuccess) {
           props.history.push("/user/dashboard");
         } else {
@@ -81,10 +82,17 @@ const Login = (props) => {
           formData={formData.password}
           change={(element) => updateForm(element)}
         />
+
         {formError ? (
           <div className="error_label">Please check your data</div>
         ) : null}
         <button onClick={(event) => submitForm(event)}>LOGIN</button>
+        <button
+          style={{ marginLeft: "10px" }}
+          onClick={() => props.history.push("/reset_user")}
+        >
+          Forgot password?
+        </button>
       </form>
     </div>
   );
